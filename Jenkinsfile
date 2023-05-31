@@ -10,6 +10,7 @@ pipeline {
         
         stage('Checkout'){
            steps {
+                git credentialsId: 'a35c4457-72fc-4444-8a87-56922662e74b', 
                 url: 'https://github.com/vinayakentc/sample',
                 branch: 'main'
            }
@@ -20,7 +21,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Buid Docker Image'
-                    docker build -t iamprabin/cicd:${BUILD_NUMBER} .
+                    docker build -t vinayakentc/nginx:${BUILD_NUMBER} .
                     '''
                 }
             }
@@ -31,7 +32,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Push to Repo'
-                    docker push iamprabin/cicd:${BUILD_NUMBER}
+                    docker push vinayakentc/nginx:${BUILD_NUMBER}
                     '''
                 }
             }
@@ -39,6 +40,7 @@ pipeline {
         
         stage('Checkout K8S manifest SCM'){
             steps {
+                git credentialsId: 'a35c4457-72fc-4444-8a87-56922662e74b', 
                 url: 'https://github.com/vinayakentc/argocd-my-app',
                 branch: 'main'
             }
@@ -48,11 +50,12 @@ pipeline {
      stage('Update K8S manifest & push to Repo'){
   steps {
     script{
+      withCredentials([sshUserPrivateKey(credentialsId: 'a8eecb14-0d03-4f91-8d38-3d09ddcad54d', keyFileVariable: 'SSH_KEY_FILE', passphraseVariable: 'SSH_PASSPHRASE', usernameVariable: 'SSH_USERNAME')]) {
         sh '''
-        cat micro-app/microservice.yaml
-        sed -i "s|image: docker.io/vinayakentc/nginx:[^ ]*|image: docker.io/vinayakentc/nginx:${BUILD_NUMBER}|g" micro-app/microservice.yaml
-        cat micro-app/microservice.yaml
-        git add micro-app/microservice.yaml
+        cat microservice.yaml
+        sed -i "s|image: docker.io/vinayakentc/nginx:[^ ]*|image: docker.io/vinayakentc/nginx:${BUILD_NUMBER}|g" microservice.yaml
+        cat microservice.yaml
+        git add microservice.yaml
         git commit -m 'Updated the microservice.yaml | Jenkins Pipeline'
         git remote -v
      
@@ -61,11 +64,10 @@ pipeline {
         # Set the remote URL to use SSH
         git remote set-url origin git@github.com:vinayakentc/argocd-my-app.git
         
+        # Use ssh-agent to add the SSH key and push the changes
+        ssh-agent bash -c 'ssh-add ${SSH_KEY_FILE}; git push origin HEAD:main'
         '''
       }
     }
   }
-}
-}
-  
 }
