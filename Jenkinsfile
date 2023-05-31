@@ -59,6 +59,7 @@ pipeline {
         git add microservice.yaml
         git commit -m 'Updated the microservice.yaml | Jenkins Pipeline'
         git remote -v
+        git add -A
      
        
 
