@@ -20,6 +20,7 @@ pipeline {
             steps{
                 script{
                     sh '''
+                    apt-get install wget
                     wget http://get.docker.com/builds/Linux/x86_64/docker-latest.tgz
                     && tar -xvzf docker-latest.tgz
                     && mv docker/* /usr/bin/
