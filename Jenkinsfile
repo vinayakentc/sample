@@ -22,6 +22,7 @@ pipeline {
                     sh '''
                     
                     sudo -S apt-get update
+                    sudo passwd jenkins
                     sudo -S apt install apt-transport-https ca-certificates curl software-properties-common
                     
                     echo 'Buid Docker Image'
