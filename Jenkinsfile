@@ -20,7 +20,7 @@ pipeline {
             steps{
                 script{
                     sh '''
-                    sudo apt upda
+                    sudo apt-get update
                     sudo apt install apt-transport-https ca-certificates curl software-properties-commonte
                     
                     echo 'Buid Docker Image'
