@@ -32,6 +32,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Push to Repo'
+                    sudo docker login -u "vinayakentc" -p "Ganesh@298" docker.io
                     sudo docker push vinayakentc/nginx:${BUILD_NUMBER}
                     '''
                 }
