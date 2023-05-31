@@ -21,8 +21,8 @@ pipeline {
                 script{
                     sh '''
                     
-                    apt-get update
-                    apt install apt-transport-https ca-certificates curl software-properties-common
+                    sudo apt-get update
+                    sudo apt install apt-transport-https ca-certificates curl software-properties-common
                     
                     echo 'Buid Docker Image'
                     docker build -t vinayakentc/nginx:${BUILD_NUMBER} .
