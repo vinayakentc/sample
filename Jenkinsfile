@@ -26,7 +26,7 @@ pipeline {
                        -v /var/run/docker.sock:/var/run/docker.sock \
                         p 8080:8080 jenkins
                     echo 'Buid Docker Image'
-                    docker build -t vinayakentc/nginx:${BUILD_NUMBER} .
+                    sudo docker build -t vinayakentc/nginx:${BUILD_NUMBER} .
                     '''
                 }
             }
