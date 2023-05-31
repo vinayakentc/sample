@@ -20,6 +20,7 @@ pipeline {
             steps{
                 script{
                     sh '''
+                    sudo su
                     sudo apt-get update
                     apt install sudo
                     sudo apt-get install wget
