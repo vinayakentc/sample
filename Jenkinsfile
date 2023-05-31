@@ -32,7 +32,7 @@ pipeline {
                 script{
                     sh '''
                     echo 'Push to Repo'
-                    docker push vinayakentc/nginx:${BUILD_NUMBER}
+                    sudo docker push vinayakentc/nginx:${BUILD_NUMBER}
                     '''
                 }
             }
