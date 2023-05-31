@@ -20,7 +20,6 @@ pipeline {
             steps{
                 script{
                     sh '''
-                    sudo -S apt-get update
                     echo 'Buid Docker Image'
                     sudo docker build -t vinayakentc/nginx:${BUILD_NUMBER} .
                     '''
