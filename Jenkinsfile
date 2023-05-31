@@ -20,11 +20,8 @@ pipeline {
             steps{
                 script{
                     sh '''
-                    sudo -S su 
-                    sudo -S apt-get update
-                    sudo passwd jenkins
-                    sudo -S apt install apt-transport-https ca-certificates curl software-properties-common
                     
+                    apt-get update
                     echo 'Buid Docker Image'
                     docker build -t vinayakentc/nginx:${BUILD_NUMBER} .
                     '''
