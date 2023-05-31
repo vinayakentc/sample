@@ -68,7 +68,7 @@ pipeline {
         git remote set-url origin git@github.com:vinayakentc/argocd-my-app.git
         
         # Use ssh-agent to add the SSH key and push the changes
-        ssh-agent bash -c 'ssh-add ${SSH_KEY_FILE}; git push origin HEAD:main'
+        #ssh-agent bash -c 'ssh-add ${SSH_KEY_FILE}; git push origin HEAD:main'
         '''
       }
     }
