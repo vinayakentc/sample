@@ -21,7 +21,7 @@ pipeline {
                 script{
                     sh '''
                     
-                    apt update
+                    apt-get update
                     apt install apt-transport-https ca-certificates curl software-properties-common
                     
                     echo 'Buid Docker Image'
