@@ -56,6 +56,7 @@ pipeline {
         cat microservice.yaml
         sed -i "s|image: docker.io/vinayakentc/nginx:[^ ]*|image: docker.io/vinayakentc/nginx:${BUILD_NUMBER}|g" microservice.yaml
         cat microservice.yaml
+        git add -A
         git add microservice.yaml
         git commit -m 'Updated the microservice.yaml | Jenkins Pipeline'
         git remote -v
