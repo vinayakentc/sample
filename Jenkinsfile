@@ -20,11 +20,7 @@ pipeline {
             steps{
                 script{
                     sh '''
-                     docker run -d \
-                       --name my-jenkins \
-                       -v /var/jenkins_home:~/.jenkins \
-                       -v /var/run/docker.sock:/var/run/docker.sock \
-                        p 8080:8080 jenkins
+                    
                     echo 'Buid Docker Image'
                     sudo docker build -t vinayakentc/nginx:${BUILD_NUMBER} .
                     '''
