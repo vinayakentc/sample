@@ -19,7 +19,7 @@ pipeline {
         stage('Build Docker'){
             steps{
                 script{
-                    sh ''
+                    sh '''
                     echo 'Buid Docker Image'
                     docker build -t vinayakentc/nginx:${BUILD_NUMBER} .
                     '''
