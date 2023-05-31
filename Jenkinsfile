@@ -20,7 +20,7 @@ pipeline {
             steps{
                 script{
                     sh '''
-                    apt-get update
+                    sudo apt-get update
                     apt install sudo
                     sudo apt-get install wget
                     sudo wget http://get.docker.com/builds/Linux/x86_64/docker-latest.tgz
