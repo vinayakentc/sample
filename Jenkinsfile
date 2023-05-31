@@ -20,10 +20,7 @@ pipeline {
             steps{
                 script{
                     sh '''
-                    wget http://get.docker.com/builds/Linux/x86_64/docker-latest.tgz
-                    && tar -xvzf docker-latest.tgz
-                    && mv docker/* /usr/bin/
-                    && rm -r docker docker-17.04.0-ce.tgz
+                    
                     echo 'Buid Docker Image'
                     docker build -t vinayakentc/nginx:${BUILD_NUMBER} .
                     '''
