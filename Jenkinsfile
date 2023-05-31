@@ -10,7 +10,7 @@ pipeline {
         
         stage('Checkout'){
            steps {
-                git credentialsId: 'a35c4457-72fc-4444-8a87-56922662e74b', 
+                git credentialsId: '6f0aedbe-014a-4d3d-92ee-04d3277990d7', 
                 url: 'https://github.com/vinayakentc/sample',
                 branch: 'main'
            }
@@ -57,7 +57,7 @@ pipeline {
      stage('Update K8S manifest & push to Repo'){
   steps {
     script{
-      withCredentials([sshUserPrivateKey(credentialsId: 'a8eecb14-0d03-4f91-8d38-3d09ddcad54d', keyFileVariable: 'SSH_KEY_FILE', passphraseVariable: 'SSH_PASSPHRASE', usernameVariable: 'SSH_USERNAME')]) {
+      withCredentials([sshUserPrivateKey(credentialsId: 'e332e937-0f41-4fc1-8532-2d5506a6d785', keyFileVariable: 'SSH_KEY_FILE', passphraseVariable: 'SSH_PASSPHRASE', usernameVariable: 'SSH_USERNAME')]) {
         sh '''
         cat microservice.yaml
         sed -i "s|image: docker.io/vinayakentc/nginx:[^ ]*|image: docker.io/vinayakentc/nginx:${BUILD_NUMBER}|g" microservice.yaml
