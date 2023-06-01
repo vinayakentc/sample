@@ -51,8 +51,11 @@ pipeline {
      stage('Update K8S manifest & push to Repo'){
   steps {
     script{
-      withCredentials([sshUserPrivateKey(credentialsId: 'e332e937-0f41-4fc1-8532-2d5506a6d785', keyFileVariable: 'SSH_KEY_FILE', passphraseVariable: 'SSH_PASSPHRASE', usernameVariable: 'SSH_USERNAME')]) {
+      withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')])  {
         sh '''
+        git config user.email "vinayakchavanentc@gmail.com"
+        git config user.name "vinayakentc"
+
         cat microservice.yaml
         sed -i "s|image: docker.io/vinayakentc/nginx:[^ ]*|image: docker.io/vinayakentc/nginx:${BUILD_NUMBER}|g" microservice.yaml
         cat microservice.yaml
@@ -66,7 +69,7 @@ pipeline {
         git remote set-url origin git@github.com:vinayakentc/argocd-my-app.git
         
         # Use ssh-agent to add the SSH key and push the changes
-        ssh-agent bash -c 'ssh-add ${SSH_KEY_FILE}; git push origin HEAD:main'
+        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
         '''
       }
     }
