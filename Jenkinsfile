@@ -61,7 +61,7 @@ pipeline {
         cat microservice.yaml
         git add microservice.yaml
         git commit -m 'Updated the microservice.yaml | Jenkins Pipeline'
-        git remote -v
+        git commit -m "Update deployment image to version ${BUILD_NUMBER}"
      
        
 
