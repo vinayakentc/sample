@@ -42,7 +42,7 @@ pipeline {
         stage('Checkout K8S manifest SCM'){
             steps {
                 git credentialsId: 'a35c4457-72fc-4444-8a87-56922662e74b', 
-                url: 'https://github.com/vinayakentc/argocd-my-app',
+                url: 'https://github.com/vinayakentc/sample',
                 branch: 'main'
             }
         }
@@ -56,14 +56,14 @@ pipeline {
         git config user.email "vinayakchavanentc@gmail.com"
         git config user.name "vinayakentc"
 
-        cat microservice.yaml
+        cat sample/microservice.yaml
         sed -i "s|image: docker.io/vinayakentc/nginx:[^ ]*|image: docker.io/vinayakentc/nginx:${BUILD_NUMBER}|g" sample/microservice.yaml
         cat sample/microservice.yaml
         git add sample/microservice.yaml
         git commit -m 'Updated the microservice.yaml | Jenkins Pipeline'     
        
         # Set the remote URL to use SSH
-        git remote set-url origin git@github.com:vinayakentc/argocd-my-app.git
+        git remote set-url origin git@github.com:vinayakentc/sample.git
         
         # Use ssh-agent to add the SSH key and push the changes
         git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
