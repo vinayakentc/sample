@@ -57,14 +57,11 @@ pipeline {
         git config user.name "vinayakentc"
 
         cat microservice.yaml
-        sed -i "s|image: docker.io/vinayakentc/nginx:[^ ]*|image: docker.io/vinayakentc/nginx:${BUILD_NUMBER}|g" microservice.yaml
-        cat microservice.yaml
-        git add microservice.yaml
-        git commit -m 'Updated the microservice.yaml | Jenkins Pipeline'
-        git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-     
+        sed -i "s|image: docker.io/vinayakentc/nginx:[^ ]*|image: docker.io/vinayakentc/nginx:${BUILD_NUMBER}|g" sample/microservice.yaml
+        cat sample/microservice.yaml
+        git add sample/microservice.yaml
+        git commit -m 'Updated the microservice.yaml | Jenkins Pipeline'     
        
-
         # Set the remote URL to use SSH
         git remote set-url origin git@github.com:vinayakentc/argocd-my-app.git
         
