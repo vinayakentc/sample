@@ -20,6 +20,8 @@ spec:
     targetPort: 80
   selector:
     app: v1
+  type: LoadBalancer
+  
 ---
 
 #-------------------------------------
@@ -35,7 +37,8 @@ spec:
   - port: 80
     targetPort: 80
   selector:
-    app: v2       
+    app: v2    
+  type: LoadBalancer
 ---
 #-------------------------------------
 # Deployment 1
@@ -56,7 +59,7 @@ spec:
     spec:
       containers:
       - name: app1
-        image: vinayakentc/nginx:v1
+        image: vinayakentc/nginx:56
         imagePullPolicy: Always
         ports:
         - containerPort: 80
@@ -81,7 +84,7 @@ spec:
     spec:
       containers:
       - name: app2
-        image: vinayakentc/nginx:v1
+        image: vinayakentc/nginx:56
         imagePullPolicy: Always
         ports:
         - containerPort: 80
