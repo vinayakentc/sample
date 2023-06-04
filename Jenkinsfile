@@ -51,7 +51,7 @@ pipeline {
      stage('Update K8S manifest & push to Repo'){
   steps {
     script{
-      withCredentials([string(credentialsId: 'GITHUB_TOKEN', variable: 'GITHUB_TOKEN')])  {
+      withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
         sh '''
         git config user.email "vinayakchavanentc@gmail.com"
         git config user.name "vinayakentc"
