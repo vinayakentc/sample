@@ -69,7 +69,8 @@ pipeline {
         git remote set-url origin git@github.com:vinayakentc/sample.git
         
         # Use ssh-agent to add the SSH key and push the changes
-        git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+        #git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+        git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/sample.git HEAD:main
         '''
       }
     }
