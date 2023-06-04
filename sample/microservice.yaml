@@ -59,7 +59,7 @@ spec:
     spec:
       containers:
       - name: app1
-        image: vinayakentc/nginx:${DOCKERTAG}
+        image: vinayakentc/nginx:${BUILD_NUMBER}
         imagePullPolicy: Always
         ports:
         - containerPort: 80
@@ -84,7 +84,7 @@ spec:
     spec:
       containers:
       - name: app2
-        image: vinayakentc/nginx:${DOCKERTAG}
+        image: vinayakentc/nginx:${BUILD_NUMBER}
         imagePullPolicy: Always
         ports:
         - containerPort: 80
