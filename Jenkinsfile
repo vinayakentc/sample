@@ -57,7 +57,7 @@ pipeline {
         git config user.name "vinayakentc"
 
         cat sample/microservice.yaml
-        v=$(cat sample/microservice.yaml | grep image: vinayakentc)
+       # v=$(cat sample/microservice.yaml | grep image: vinayakentc)
         
         #sed 's/$v/image: vinayakentc/nginx:${BUILD_NUMBER}' sample/microservice.yaml
         sh "sed -i 's+vinayakentc/nginx.*+vinayakentc/nginx:${DOCKERTAG}+g' sample/microservice.yaml"
