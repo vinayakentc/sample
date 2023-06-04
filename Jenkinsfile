@@ -60,7 +60,7 @@ pipeline {
        # v=$(cat sample/microservice.yaml | grep image: vinayakentc)
         
         #sed 's/$v/image: vinayakentc/nginx:${BUILD_NUMBER}' sample/microservice.yaml
-        sed -i 's+vinayakentc/nginx.*+vinayakentc/nginx:${DOCKERTAG}+g' sample/microservice.yaml
+        sed -i 's+vinayakentc/nginx.*+vinayakentc/nginx:${BUILD_NUMBER}+g' sample/microservice.yaml
         cat sample/microservice.yaml
         git add sample/microservice.yaml
         git commit -m 'Updated the microservice.yaml | Jenkins Pipeline'     
